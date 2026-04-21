@@ -1,7 +1,7 @@
 {
   "name": "Noctis Content Injector",
   "description": "Aplica textos, imagens, paletas e perfil em carrosséis de forma automatizada.",
-  "host": "https://github.com/marcosaugustoldo/noctis-content-injector-penpot",
+  "host": "https://marcosaugustoldo.github.io/noctis-content-injector-penpot/",
   "code": "plugin.js",
   "icon": "/icon.png",
   "permissions": [
