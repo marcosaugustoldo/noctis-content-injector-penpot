@@ -6,8 +6,6 @@
   "icon": "/icon.png",
   "permissions": [
     "content:read",
-    "content:write",
-    "allow:downloads",
-    "allow:localstorage"
+    "content:write"
   ]
 }
