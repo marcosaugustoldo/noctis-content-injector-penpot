@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Noctis Content Injector</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font: "JetBrains Mono", monospace;
+  --bg: #1f1f1f;
+  --t1: #d4d4d4;
+  --t2: rgba(212, 212, 212, 0.7);
+  --accent: #ecdb9f;
+  --border: rgba(255, 255, 255, 0.08);
+  --field: rgba(0, 0, 0, 0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 13px/1.5 var(--font); color: var(--t1); background: var(--bg); min-height: 100vh; padding: 12px; }
+
+.gc { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 12px; overflow: hidden; background: rgba(255,255,255,0.02); }
+.hd { display: flex; justify-content: space-between; align-items: center; padding: 12px; }
+.logo { font-size: 16px; font-weight: 800; letter-spacing: -0.5px; }
+.logo span { color: var(--accent); }
+
+.ib { width: 28px; height: 28px; border: 1px solid var(--border); color: var(--t1); display: flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 3px; }
+.ib:hover { border-color: var(--accent); color: var(--accent); }
+
+textarea { width: 100%; min-height: 180px; padding: 12px; background: var(--field); border: 1px solid var(--border); color: var(--t1); font: 400 12px var(--font); outline: none; resize: none; margin-bottom: 8px; }
+textarea:focus { border-color: var(--accent); }
+
+.bt-inject { width: 100%; padding: 12px; background: var(--accent); color: var(--bg); border: none; font-weight: 800; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+.bt-inject:hover { opacity: 0.9; }
+
+.noctis-promo { padding: 20px 12px; text-align: center; border-top: 1px solid var(--border); margin-top: 20px; }
+.cta-text { font-size: 11px; color: var(--t2); margin-bottom: 16px; line-height: 1.6; }
+
+.bt-insta { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 12px; background: transparent; border: 1px solid var(--accent); 
+    color: var(--accent); font-weight: 700; text-decoration: none; font-size: 11px; border-radius: 2px;
+}
+.bt-insta:hover { background: rgba(236, 219, 159, 0.05); }
+.bt-insta svg { width: 14px; height: 14px; fill: currentColor; }
+</style>
+</head>
+<body>
+  <header class="hd">
+    <div class="logo">NOCTIS <span>INJECTOR</span></div>
+    <a href="mailto:contato@noctis.icu" class="ib" title="Suporte">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </a>
+  </header>
+
+  <div class="gc" style="padding: 12px;">
+    <textarea id="txt" placeholder="texto 1 - Headline Poderosa&#10;texto 2 - Lead do Carrossel&#10;texto 3 - CTA de Vendas"></textarea>
+    <button id="btnContent" class="bt-inject">Injetar Copy</button>
+  </div>
+
+  <div class="noctis-promo">
+    <p class="cta-text">Consultoria em Copywriting para quem quer ser relevante e bem pago.</p>
+    <a href="https://www.instagram.com/noctis_copywriting/" target="_blank" class="bt-insta">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Conheça a Noctis no Instagram
+    </a>
+  </div>
+
+  <script>
+    const txt = document.getElementById('txt');
+    document.getElementById('btnContent').onclick = () => {
+      const content = txt.value;
+      if(!content.trim()) return;
+      window.parent.postMessage({ type: 'apply-content', content: content }, '*');
+    };
+  </script>
+</body>
+</html>
