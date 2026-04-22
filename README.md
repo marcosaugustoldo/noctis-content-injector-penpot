@@ -4,7 +4,7 @@ Noctis Content Injector is a technical tool designed to eliminate the friction o
 
 ---
 
-## ⚡ Direct Installation
+## Direct Installation
 
 No code download is required. Penpot consumes the manifest directly via URL.
 
