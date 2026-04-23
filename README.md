@@ -1,58 +1,139 @@
-# Strategic Copywriting & Visual Automation for Penpot.
+# Strategic Copywriting & Visual Automation for Penpot
 
-Noctis Content Injector is a technical tool designed to eliminate the friction of manual "copy-pasting" into layouts. Built for high-level copywriters and designers, this plugin enables mass injection of strategic copy directly into Penpot boards.
+The Noctis Content Injector is a technical tool designed to eliminate the friction of manual copy-pasting. 
+
+Built for high-level copywriters and designers, this plugin enables mass injection of strategic copy directly into Penpot boards.
 
 ---
 
-## Direct Installation
+## Local Environment Setup
 
-No code download is required. Penpot consumes the manifest directly via URL.
+**You must run this plugin locally.** Penpot requires an active URL to consume the manifest.
 
-1. In Penpot, open a design file.
-2. In the right sidebar, go to the **Plugins** tab.
-3. Click **Install Plugin from URL** (or the `+` icon).
-4. Paste the official URL:
-   `https://marcosaugustoldo.github.io/noctis-content-injector-penpot/manifest.json`
+1. Clone the repository to your machine:
+```bash
+git clone [https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git](https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git)
+```
+
+2. Navigate into the plugin's root folder:
+```bash
+cd noctis-content-injector-penpot
+```
+
+3. Run the static server on port 3000:
+```bash
+npx serve -p 3000
+```
+
+4. Keep the terminal open. **If the server stops, the plugin interface will disappear.**
+
+---
+
+## Background Execution (Always On)
+
+Running the server manually in a terminal is amateur. Automate the process for a professional workflow.
+
+### Linux (systemd)
+Create a service to start the server automatically on boot.
+
+1. Create the service file:
+```bash
+sudo nano /etc/systemd/system/noctis-injector.service
+```
+
+2. Insert the configuration below. **Replace the absolute paths** with your real Node path and plugin folder:
+```ini
+[Unit]
+Description=Noctis Content Injector
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/absolute/path/to/noctis-content-injector-penpot
+ExecStart=/usr/bin/npx serve -p 3000
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+3. Enable and start the service:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now noctis-injector
+```
+**Check status with:** `systemctl status noctis-injector`.
+
+### Windows (Task Scheduler)
+Hide the command prompt and run the server invisibly on logon.
+
+1. Create a `start-noctis.bat` file in the plugin folder:
+```bat
+@echo off
+cd /d "%~dp0"
+npx serve -p 3000
+```
+
+2. Create a `run-hidden.vbs` file in the same folder:
+```vbs
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run chr(34) & "start-noctis.bat" & Chr(34), 0
+Set WshShell = Nothing
+```
+
+3. Open **Task Scheduler** (`taskschd.msc`).
+4. **Create Task** (not Basic Task).
+5. **General:** Name it `NoctisInjector` and check **"Run with highest privileges"**.
+6. **Triggers:** Add **"At log on"**.
+7. **Actions:** Add **"Start a program"** and point to `run-hidden.vbs`.
+
+---
+
+## Penpot Installation
+
+1. Open any Penpot design file.
+2. Go to the **Plugins** tab in the sidebar.
+3. Click **Install Plugin from URL** (`+` icon).
+4. Paste your local manifest URL:
+`http://localhost:3000/manifest.json`
 5. Click **Install**.
 
 ---
 
-## How to Use
+## Execution Protocol
 
-The system operates based on **compact mapping**. For the injection to work, your text layers in Penpot must follow a specific naming convention.
+The system operates under **compact mapping**. Naming conventions are strict rules, not suggestions.
 
-### 1. Name your layers
-Rename the target text layers on your board using the pattern:
+### 1. Board Preparation
+Rename target text layers in your canvas using the exact pattern:
 - `text 1` (or `texto 1`)
-- `text 2` (or `texto 2`)
-- `text 3` (and so on)
+- `text 2`
+- `text 3`
 
-### 2. Prepare your Copy
-In the plugin panel, write your content following this format:
+### 2. Copy Syntax
+Enter your copy into the plugin interface respecting the syntax:
 ```text
-texto 1 - High-converting Headline
-texto 2 - Carousel lead with social proof
+texto 1 - Aggressive Headline
+texto 2 - Social proof and retention
 texto 3 - Call to Action (CTA)
 ```
 
-### 3. Inject
-1. Select the **Boards** where you want to apply the copy.
-2. Click **Inject Copy**.
-3. The plugin performs a deep (recursive) search and replaces the content of all matching layers instantly.
+### 3. Injection
+Select the target **Boards**. Click **Inject Copy**.
+
+The scan is recursive and deep. **Any typo in the layer name will cause the script to silently ignore the target.**
 
 ---
 
-## Visual Identity & Stack
+## Identity & Stack
 
 - **Typography:** JetBrains Mono (Technical Brutalism).
 - **Palette:** Background `#1F1F1F`, Text `#D4D4D4`, Accent `#ECDB9F`.
-- **Technology:** Vanilla JavaScript + Penpot Plugin API.
+- **Core:** Vanilla JavaScript + Penpot Plugin API.
 
 ---
 
 ## About Noctis
 
-Copywriting Consultancy for those who want to be relevant and well-paid. We elevate the level of strategic communication through deep diagnostics and aggressive action plans.
-
-- **Instagram:** [@noctis_copywriting](https://www.instagram.com/noctis_copywriting/)
-- **Support:** [contato@noctis.icu](mailto:contato@noctis.icu)
+Copywriting Consultancy for those who want to be relevant and well-paid. We execute deep diagnostics and aggressive action plans for personal brands.
