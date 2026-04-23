@@ -4,30 +4,29 @@ The Noctis Content Injector is a technical tool designed to eliminate the fricti
 
 Built for high-level copywriters and designers, this plugin enables mass injection of strategic copy directly into Penpot boards.
 
----
-
 ## Local Environment Setup
 
 **You must run this plugin locally.** Penpot requires an active URL to consume the manifest.
 
 1. Clone the repository to your machine:
+
 ```bash
-git clone [https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git](https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git)
+git clone https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git
 ```
 
 2. Navigate into the plugin's root folder:
+
 ```bash
 cd noctis-content-injector-penpot
 ```
 
 3. Run the static server on port 3000:
+
 ```bash
 npx serve -p 3000
 ```
 
 4. Keep the terminal open. **If the server stops, the plugin interface will disappear.**
-
----
 
 ## Background Execution (Always On)
 
@@ -37,11 +36,13 @@ Running the server manually in a terminal is amateur. Automate the process for a
 Create a service to start the server automatically on boot.
 
 1. Create the service file:
+
 ```bash
 sudo nano /etc/systemd/system/noctis-injector.service
 ```
 
 2. Insert the configuration below. **Replace the absolute paths** with your real Node path and plugin folder:
+
 ```ini
 [Unit]
 Description=Noctis Content Injector
@@ -59,16 +60,19 @@ WantedBy=multi-user.target
 ```
 
 3. Enable and start the service:
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now noctis-injector
 ```
+
 **Check status with:** `systemctl status noctis-injector`.
 
 ### Windows (Task Scheduler)
 Hide the command prompt and run the server invisibly on logon.
 
 1. Create a `start-noctis.bat` file in the plugin folder:
+
 ```bat
 @echo off
 cd /d "%~dp0"
@@ -76,6 +80,7 @@ npx serve -p 3000
 ```
 
 2. Create a `run-hidden.vbs` file in the same folder:
+
 ```vbs
 Set WshShell = CreateObject("WScript.Shell")
 WshShell.Run chr(34) & "start-noctis.bat" & Chr(34), 0
@@ -88,8 +93,6 @@ Set WshShell = Nothing
 6. **Triggers:** Add **"At log on"**.
 7. **Actions:** Add **"Start a program"** and point to `run-hidden.vbs`.
 
----
-
 ## Penpot Installation
 
 1. Open any Penpot design file.
@@ -98,8 +101,6 @@ Set WshShell = Nothing
 4. Paste your local manifest URL:
 `http://localhost:3000/manifest.json`
 5. Click **Install**.
-
----
 
 ## Execution Protocol
 
@@ -131,8 +132,6 @@ The scan is recursive and deep. **Any typo in the layer name will cause the scri
 - **Typography:** JetBrains Mono (Technical Brutalism).
 - **Palette:** Background `#1F1F1F`, Text `#D4D4D4`, Accent `#ECDB9F`.
 - **Core:** Vanilla JavaScript + Penpot Plugin API.
-
----
 
 ## About Noctis
 
