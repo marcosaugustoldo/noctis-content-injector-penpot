@@ -125,8 +125,6 @@ Select the target **Boards**. Click **Inject Copy**.
 
 The scan is recursive and deep. **Any typo in the layer name will cause the script to silently ignore the target.**
 
----
-
 ## Identity & Stack
 
 - **Typography:** JetBrains Mono (Technical Brutalism).
