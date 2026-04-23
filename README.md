@@ -23,7 +23,7 @@ cd noctis-content-injector-penpot
 3. Run the static server on port 3000:
 
 ```bash
-npx serve -p 3000
+npx serve -p 3000 --cors
 ```
 
 4. Keep the terminal open. **If the server stops, the plugin interface will disappear.**
@@ -52,7 +52,7 @@ After=network.target
 Type=simple
 User=YOUR_USER
 WorkingDirectory=/absolute/path/to/noctis-content-injector-penpot
-ExecStart=/usr/bin/npx serve -p 3000
+ExecStart=/usr/bin/npx serve -p 3000 --cors
 Restart=on-failure
 
 [Install]
@@ -76,7 +76,7 @@ Hide the command prompt and run the server invisibly on logon.
 ```bat
 @echo off
 cd /d "%~dp0"
-npx serve -p 3000
+npx serve -p 3000 --cors
 ```
 
 2. Create a `run-hidden.vbs` file in the same folder:
