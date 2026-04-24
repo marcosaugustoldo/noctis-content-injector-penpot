@@ -1,5 +1,7 @@
 # Strategic Copywriting & Visual Automation for Penpot
 
+![https://i.ibb.co/svkmWVvG/Screenshot-2026-04-24-19-56-38.png](https://i.ibb.co/svkmWVvG/Screenshot-2026-04-24-19-56-38.png)
+
 The Noctis Content Injector is a technical tool designed to eliminate the friction of manual copy-pasting. 
 
 Built for high-level copywriters and designers, this plugin enables mass injection of strategic copy directly into Penpot boards.
