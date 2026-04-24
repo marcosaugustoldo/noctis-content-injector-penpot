@@ -1,8 +1,8 @@
 {
   "name": "Noctis Content Injector",
   "description": "Injeção estratégica de copy para profissionais de alto nível.",
-  "code": "main.js",
-  "icon": "icon.png",
+  "code": "./main.js",
+  "icon": "./icon.png",
   "permissions": [
     "content:read",
     "content:write"
