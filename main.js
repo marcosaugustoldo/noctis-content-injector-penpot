@@ -1,5 +1,5 @@
 // main.js — Noctis Content Injector
-penpot.ui.open("Noctis Injector", "index.html", {
+penpot.ui.open("Noctis Injector", "", {
     width: 380,
     height: 520
 });
