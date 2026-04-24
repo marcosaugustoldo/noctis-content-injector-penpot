@@ -1,9 +1,3 @@
-// main.js — Noctis Content Injector
-penpot.ui.open("Noctis Injector", "", {
-    width: 380,
-    height: 520
-});
-
 const rxText = /^texto\s*(\d+)\s*-\s*(.+)$/i;
 
 function normalizeName(s) { 
