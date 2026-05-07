@@ -3,6 +3,8 @@
   "description": "Injeção estratégica de copy para profissionais de alto nível.",
   "code": "main.js",
   "icon": "icon.png",
+  "version": "1.0.0",
+  "author": "Marcos Augusto",
   "permissions": [
     "content:read",
     "content:write"

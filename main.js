@@ -6,8 +6,8 @@ penpot.ui.open("Noctis Injector", `index.html?theme=${penpot.theme}`, {
 
 const rxText = /^texto\s*(\d+)\s*-\s*(.+)$/i;
 
-function normalizeName(s) { 
-    return String(s || '').toLowerCase().replace(/\s|\-|_/g, ''); 
+function normalizeName(s) {
+    return String(s || '').toLowerCase().replace(/\s|\-|_/g, '');
 }
 
 function parseCompactText(raw) {
@@ -35,31 +35,51 @@ function getSelectedBoards() {
     return boards;
 }
 
-function findTextTargetsDeep(node, targetKey, results = []) {
-    if (node.type === 'text' && normalizeName(node.name) === targetKey) {
-        results.push(node);
+function findTextTargetsDeep(node, n, results = []) {
+    if (node.type === 'text') {
+        const keyText = normalizeName('text ' + n);
+        const keyTexto = normalizeName('texto ' + n);
+        const norm = normalizeName(node.name);
+        if (norm === keyText || norm === keyTexto) {
+            results.push(node);
+        }
     }
     if (node.children && node.children.length > 0) {
-        node.children.forEach(child => findTextTargetsDeep(child, targetKey, results));
+        node.children.forEach(child => findTextTargetsDeep(child, n, results));
     }
     return results;
 }
 
 penpot.ui.onMessage((msg) => {
-    if (msg.type === 'apply-content') {
+    if (msg.type !== 'apply-content') return;
+
+    try {
         const boards = getSelectedBoards();
-        if (boards.length === 0) return;
+        if (boards.length === 0) {
+            penpot.ui.sendMessage({ type: 'inject-result', ok: false, error: 'Nenhum board selecionado.' });
+            return;
+        }
 
         const textMap = parseCompactText(msg.content);
-        
+        if (textMap.size === 0) {
+            penpot.ui.sendMessage({ type: 'inject-result', ok: false, error: 'Nenhum texto válido encontrado no formato.' });
+            return;
+        }
+
+        let total = 0;
         boards.forEach(board => {
             for (const [n, value] of textMap) {
                 if (!value) continue;
-                const targets = findTextTargetsDeep(board, normalizeName(`texto ${n}`));
+                const targets = findTextTargetsDeep(board, n);
                 targets.forEach(target => {
-                    target.characters = value; 
+                    target.characters = value;
+                    total++;
                 });
             }
         });
+
+        penpot.ui.sendMessage({ type: 'inject-result', ok: true, total });
+    } catch (e) {
+        penpot.ui.sendMessage({ type: 'inject-result', ok: false, error: e.message || 'Erro inesperado.' });
     }
 });
