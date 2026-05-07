@@ -1,49 +1,49 @@
-# Strategic Copywriting & Visual Automation for Penpot
+# Copywriting Estratégico & Automação Visual para Penpot
 
 ![https://i.ibb.co/svkmWVvG/Screenshot-2026-04-24-19-56-38.png](https://i.ibb.co/svkmWVvG/Screenshot-2026-04-24-19-56-38.png)
 
-The Noctis Content Injector is a technical tool designed to eliminate the friction of manual copy-pasting. 
+O Noctis Content Injector é uma ferramenta técnica desenvolvida para eliminar o atrito da colagem manual de copy.
 
-Built for high-level copywriters and designers, this plugin enables mass injection of strategic copy directly into Penpot boards.
+Criado para copywriters e designers de alto nível, este plugin permite a injeção em massa de copy estratégico diretamente nos boards do Penpot.
 
-## Local Environment Setup
+## Configuração do Ambiente Local
 
-**You must run this plugin locally.** Penpot requires an active URL to consume the manifest.
+**Você precisa executar este plugin localmente.** O Penpot exige uma URL ativa para consumir o manifesto.
 
-1. Clone the repository to your machine:
+1. Clone o repositório na sua máquina:
 
 ```bash
 git clone https://github.com/marcosaugustoldo/noctis-content-injector-penpot.git
 ```
 
-2. Navigate into the plugin's root folder:
+2. Navegue até a pasta raiz do plugin:
 
 ```bash
 cd noctis-content-injector-penpot
 ```
 
-3. Run the static server on port 3000:
+3. Execute o servidor estático na porta 3000:
 
 ```bash
 npx serve -p 3000 --cors
 ```
 
-4. Keep the terminal open. **If the server stops, the plugin interface will disappear.**
+4. Mantenha o terminal aberto. **Se o servidor parar, a interface do plugin desaparecerá.**
 
-## Background Execution (Always On)
+## Execução em Segundo Plano (Sempre Ativo)
 
-Running the server manually in a terminal is amateur. Automate the process for a professional workflow.
+Rodar o servidor manualmente no terminal é amador. Automatize o processo para um fluxo de trabalho profissional.
 
 ### Linux (systemd)
-Create a service to start the server automatically on boot.
+Crie um serviço para iniciar o servidor automaticamente na inicialização.
 
-1. Create the service file:
+1. Crie o arquivo de serviço:
 
 ```bash
 sudo nano /etc/systemd/system/noctis-injector.service
 ```
 
-2. Insert the configuration below. **Replace the absolute paths** with your real Node path and plugin folder:
+2. Insira a configuração abaixo. **Substitua os caminhos absolutos** pelo caminho real do Node e da pasta do plugin:
 
 ```ini
 [Unit]
@@ -52,8 +52,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=YOUR_USER
-WorkingDirectory=/absolute/path/to/noctis-content-injector-penpot
+User=SEU_USUARIO
+WorkingDirectory=/caminho/absoluto/para/noctis-content-injector-penpot
 ExecStart=/usr/bin/npx serve -p 3000 --cors
 Restart=on-failure
 
@@ -61,19 +61,19 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-3. Enable and start the service:
+3. Habilite e inicie o serviço:
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now noctis-injector
 ```
 
-**Check status with:** `systemctl status noctis-injector`.
+**Verifique o status com:** `systemctl status noctis-injector`.
 
-### Windows (Task Scheduler)
-Hide the command prompt and run the server invisibly on logon.
+### Windows (Agendador de Tarefas)
+Oculte o prompt de comando e execute o servidor de forma invisível ao fazer logon.
 
-1. Create a `start-noctis.bat` file in the plugin folder:
+1. Crie um arquivo `start-noctis.bat` na pasta do plugin:
 
 ```bat
 @echo off
@@ -81,7 +81,7 @@ cd /d "%~dp0"
 npx serve -p 3000 --cors
 ```
 
-2. Create a `run-hidden.vbs` file in the same folder:
+2. Crie um arquivo `run-hidden.vbs` na mesma pasta:
 
 ```vbs
 Set WshShell = CreateObject("WScript.Shell")
@@ -89,50 +89,50 @@ WshShell.Run chr(34) & "start-noctis.bat" & Chr(34), 0
 Set WshShell = Nothing
 ```
 
-3. Open **Task Scheduler** (`taskschd.msc`).
-4. **Create Task** (not Basic Task).
-5. **General:** Name it `NoctisInjector` and check **"Run with highest privileges"**.
-6. **Triggers:** Add **"At log on"**.
-7. **Actions:** Add **"Start a program"** and point to `run-hidden.vbs`.
+3. Abra o **Agendador de Tarefas** (`taskschd.msc`).
+4. **Criar Tarefa** (não Tarefa Básica).
+5. **Geral:** Nomeie como `NoctisInjector` e marque **"Executar com privilégios mais altos"**.
+6. **Gatilhos:** Adicione **"Ao fazer logon"**.
+7. **Ações:** Adicione **"Iniciar um programa"** e aponte para `run-hidden.vbs`.
 
-## Penpot Installation
+## Instalação no Penpot
 
-1. Open any Penpot design file.
-2. Go to the **Plugins** tab in the sidebar.
-3. Click **Install Plugin from URL** (`+` icon).
-4. Paste your local manifest URL:
+1. Abra qualquer arquivo de design do Penpot.
+2. Vá até a aba **Plugins** na barra lateral.
+3. Clique em **Instalar Plugin por URL** (ícone `+`).
+4. Cole a URL do manifesto local:
 `http://localhost:3000/manifest.json`
-5. Click **Install**.
+5. Clique em **Instalar**.
 
-## Execution Protocol
+## Protocolo de Execução
 
-The system operates under **compact mapping**. Naming conventions are strict rules, not suggestions.
+O sistema opera por **mapeamento compacto**. As convenções de nomenclatura são regras rígidas, não sugestões.
 
-### 1. Board Preparation
-Rename target text layers in your canvas using the exact pattern:
-- `text 1` (or `texto 1`)
-- `text 2`
-- `text 3`
+### 1. Preparação dos Boards
+Renomeie as camadas de texto alvo no seu canvas usando o padrão exato:
+- `texto 1` (ou `text 1`)
+- `texto 2`
+- `texto 3`
 
-### 2. Copy Syntax
-Enter your copy into the plugin interface respecting the syntax:
+### 2. Sintaxe da Copy
+Insira sua copy na interface do plugin respeitando a sintaxe:
 ```text
-texto 1 - Aggressive Headline
-texto 2 - Social proof and retention
-texto 3 - Call to Action (CTA)
+texto 1 - Headline Agressiva
+texto 2 - Prova social e retenção
+texto 3 - Chamada para Ação (CTA)
 ```
 
-### 3. Injection
-Select the target **Boards**. Click **Inject Copy**.
+### 3. Injeção
+Selecione os **Boards** alvo. Clique em **Injetar Copy**.
 
-The scan is recursive and deep. **Any typo in the layer name will cause the script to silently ignore the target.**
+A varredura é recursiva e profunda. **Qualquer erro de digitação no nome da camada fará com que o script ignore silenciosamente o alvo.**
 
-## Identity & Stack
+## Identidade & Stack
 
-- **Typography:** JetBrains Mono (Technical Brutalism).
-- **Palette:** Background `#1F1F1F`, Text `#D4D4D4`, Accent `#ECDB9F`.
-- **Core:** Vanilla JavaScript + Penpot Plugin API.
+- **Tipografia:** JetBrains Mono (Brutalismo Técnico).
+- **Paleta:** Fundo `#1F1F1F`, Texto `#D4D4D4`, Destaque `#ECDB9F`.
+- **Núcleo:** Vanilla JavaScript + Penpot Plugin API.
 
-## About Noctis
+## Sobre a Noctis
 
-Copywriting Consultancy for those who want to be relevant and well-paid. We execute deep diagnostics and aggressive action plans for personal brands.
+Consultoria de Copywriting para quem quer ser relevante e bem pago. Executamos diagnósticos profundos e planos de ação agressivos para marcas pessoais.
